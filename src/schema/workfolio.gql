@@ -1,0 +1,35 @@
+input udtString {
+    value: String!
+}
+
+input udtInt {
+    value: Int!
+}
+
+input ProductInput {
+    Title: String
+    Description: String
+    ProductToken: String
+    # Cover: Int
+    # File: Int
+    # Gallery: [udtInt]
+    # Tags: [udtString]
+    # Participants: [udtString]
+    # Privacy: PrivacyType
+}
+
+type Product {
+    Title: String
+    Description: String
+    ProductToken: String
+    # Cover: String
+    # File: String
+    # User: [Profile]
+    # UserID: Int
+    # CreatedAt: String
+    # Gallery: [Gallery]
+    # Tags: [Tags]
+    # Participants: [Profile]
+    # Likes: Int
+    # Views: Int
+}

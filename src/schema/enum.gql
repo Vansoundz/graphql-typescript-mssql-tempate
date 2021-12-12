@@ -1,0 +1,25 @@
+enum TargetType {
+    Workfolio                                         
+    Trailer                                           
+    Profile                                           
+    Review                                            
+}
+
+enum FileType {
+    Image                                             
+    Audio                                             
+    Video                                             
+}
+
+enum ImageType {
+    Cover                                             
+    Avatar                                            
+    Gallery                                           
+    Thumbnail                                         
+}
+
+enum PrivacyType {
+    Public
+    Private
+    Draft                                       
+}

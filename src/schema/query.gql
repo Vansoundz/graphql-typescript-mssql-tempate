@@ -1,0 +1,21 @@
+type Query {
+  # Product
+  user(Email: String): User
+  products(searchString: String, pageNumber: Int, numberOfRecords: Int): [Product]
+  product(UserToken: String): Product
+}
+
+type Mutation {
+  # Auth
+  login(Email: String!, Password: String!): User
+  register(Email: String!, Password: String!): User
+
+  # Product
+  productSave(
+    product: ProductInput
+  ):Product
+
+  # File
+  singleUpload(file: Upload!, targetType: TargetType!, fileType: FileType!, imageType: ImageType): Int
+  multipleUpload(files: [Upload!]!, targetType: TargetType!, fileType: FileType!, imageType: ImageType): [MultipleFileRes]
+}
