@@ -1,14 +1,14 @@
 import { login, register } from "$res/auth";
 import { multipleUpload, singleUpload } from "$res/file";
 import { product, products, productSave } from "$res/product";
-import { user } from "$res/user";
+import { person } from "$res/person";
 import { GraphQLUpload } from "graphql-upload";
 
 const resolvers = {
     Upload: GraphQLUpload,
     Query: {
         // Profile
-        user,
+        person,
         products,
         product,
     },

@@ -19,7 +19,7 @@
     "tsconfig-paths": "^3.11.0"
   },
   "scripts": {
-    "dev": "nodemon -r tsconfig-paths/register -e ts,json,gql,env src/index.ts"
+    "dev": "SET NODE_ENV=development&& nodemon -r tsconfig-paths/register -e ts,json,gql,env,dev src/index.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

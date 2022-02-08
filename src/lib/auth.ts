@@ -1,10 +1,10 @@
 import { AuthenticationError } from "apollo-server-errors";
 import { IContext } from "./interface";
 
-const authenticateUser = (context: IContext) => {
-    if (!context.UserToken) {
+const authenticatePerson = (context: IContext) => {
+    if (!context.PersonToken) {
         throw new AuthenticationError('Not Authorized')
     }
 }
 
-export { authenticateUser }
+export { authenticatePerson }

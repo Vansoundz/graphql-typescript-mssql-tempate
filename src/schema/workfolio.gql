@@ -19,17 +19,16 @@ input ProductInput {
 }
 
 type Product {
-    Title: String
-    Description: String
-    ProductToken: String
-    # Cover: String
-    # File: String
-    # User: [Profile]
-    # UserID: Int
-    # CreatedAt: String
-    # Gallery: [Gallery]
-    # Tags: [Tags]
-    # Participants: [Profile]
-    # Likes: Int
-    # Views: Int
+  Title: String
+  Description: String
+  ProductToken: String
+  # Cover: String
+  # File: String
+  # UserID: Int
+  # CreatedAt: String
+  # Gallery: [Gallery]
+  # Tags: [Tags]
+  # Participants: [Profile]
+  # Likes: Int
+  # Views: Int
 }

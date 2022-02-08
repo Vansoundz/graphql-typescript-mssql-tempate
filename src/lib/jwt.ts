@@ -5,8 +5,8 @@ config()
 
 const SECRET = process.env.JWT_SECRET as string
 
-const createToken = (UserToken: string) => {
-    let token = sign({ UserToken }, SECRET, {
+const createToken = (PersonToken: string) => {
+    let token = sign({ PersonToken }, SECRET, {
         expiresIn: 24 * 60 * 60 * 1000
     })
 

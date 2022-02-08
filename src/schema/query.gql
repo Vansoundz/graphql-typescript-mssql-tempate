@@ -1,21 +1,33 @@
 type Query {
   # Product
-  user(Email: String): User
-  products(searchString: String, pageNumber: Int, numberOfRecords: Int): [Product]
-  product(UserToken: String): Product
+  person(Email: String): Person
+  products(
+    searchString: String
+    pageNumber: Int
+    numberOfRecords: Int
+  ): [Product]
+  product(PersonToken: String): Product
 }
 
 type Mutation {
   # Auth
-  login(Email: String!, Password: String!): User
-  register(Email: String!, Password: String!): User
+  login(Email: String!, Password: String!): Person
+  register(Email: String!, Password: String!): Person
 
   # Product
-  productSave(
-    product: ProductInput
-  ):Product
+  productSave(product: ProductInput): Product
 
   # File
-  singleUpload(file: Upload!, targetType: TargetType!, fileType: FileType!, imageType: ImageType): Int
-  multipleUpload(files: [Upload!]!, targetType: TargetType!, fileType: FileType!, imageType: ImageType): [MultipleFileRes]
+  singleUpload(
+    file: Upload!
+    targetType: TargetType!
+    fileType: FileType!
+    imageType: ImageType
+  ): Int
+  multipleUpload(
+    files: [Upload!]!
+    targetType: TargetType!
+    fileType: FileType!
+    imageType: ImageType
+  ): [MultipleFileRes]
 }

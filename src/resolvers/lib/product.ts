@@ -1,11 +1,11 @@
 import db from "$db"
-import { authenticateUser } from "$lib/auth"
+import { authenticatePerson } from "$lib/auth"
 import handleError from "$lib/error"
 
 
 const products = async (parent: any, args: any, context: any, info: any) => {
     try {
-        authenticateUser(context)
+        authenticatePerson(context)
         let products = await db.execList('ProductListGet', args)
         return products
     } catch (error) {
@@ -15,8 +15,8 @@ const products = async (parent: any, args: any, context: any, info: any) => {
 
 const product = async (parent: any, args: any, context: any, info: any) => {
     try {
-        authenticateUser(context)
-        args.userToken = context.UserToken
+        authenticatePerson(context)
+        args.personToken = context.PersonToken
         let product = await db.exec('ProductGet', args)
         return product
     } catch (error) {
@@ -27,9 +27,9 @@ const product = async (parent: any, args: any, context: any, info: any) => {
 
 const productSave = async (parent: any, args: any, context: any, info: any) => {
     try {
-        authenticateUser(context)
+        authenticatePerson(context)
         let params = args.product
-        params.userToken = context.UserToken
+        params.personToken = context.PersonToken
         let product = await db.exec('ProductSave', params)
         return product
     } catch (error) {

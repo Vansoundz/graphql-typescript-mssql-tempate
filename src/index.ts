@@ -5,10 +5,14 @@ import http from 'http';
 import resolvers from './resolvers';
 import { DocumentNode, } from 'graphql';
 // import schema from './schema';
-// import getUser from './lib';
 import { decodeToken } from '$lib/jwt';
 import { graphqlUploadExpress } from 'graphql-upload'
 import { loadFiles } from 'graphql-import-files';
+import { config } from "dotenv";
+import path from 'path';
+
+config({ path: path.resolve(process.env.NODE_ENV === 'development' ? '.env.dev' : '.env') });
+const dev = process.env.NODE_ENV === 'development'
 
 async function startApolloServer(typeDefs: DocumentNode, resolvers: any) {
     const app = express();
@@ -21,12 +25,12 @@ async function startApolloServer(typeDefs: DocumentNode, resolvers: any) {
             const token = req.headers.authorization || '';
             let params: any = decodeToken(token)
 
-            if (params?.UserToken) {
-                // const user = await getUser({ userToken: params.UserToken });
-                return { UserToken: params.UserToken };
+            if (params?.PersonToken) {
+                return { PersonToken: params.PersonToken };
             }
             return {}
-        }
+        },
+        introspection: dev
     });
     app.use(graphqlUploadExpress())
     await server.start();

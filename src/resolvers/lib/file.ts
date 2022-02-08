@@ -1,9 +1,8 @@
 import db from "$db";
-import { authenticateUser } from "$lib/auth";
+import { authenticatePerson } from "$lib/auth";
 import { S3 } from "aws-sdk";
 import { config } from "dotenv";
 import handleError from "$lib/error";
-// import { getUserProfile } from "./user";
 
 config();
 
@@ -34,14 +33,8 @@ const uploadFile = async (file: any, targetType: string, fileType: string, usern
 
 const singleUpload = async (parent: any, { file, targetType, fileType, imageType }: any = {}, context: any, info: any) => {
     try {
-        authenticateUser(context)
+        authenticatePerson(context)
         const { createReadStream, filename, mimetype } = await file;
-
-        // let profile = await getUserProfile(parent, {}, context, info)
-        // let username = profile.UserName
-        // if (!username) {
-        //     username = 'unknown'
-        // }
 
         const stream = createReadStream()
 
@@ -58,7 +51,7 @@ const singleUpload = async (parent: any, { file, targetType, fileType, imageType
         let params = {
             location: rsp.Location,
             key: rsp.Key,
-            userToken: context.UserToken,
+            personToken: context.PersonToken,
             targetType,
             fileType,
             imageType
@@ -74,16 +67,9 @@ const singleUpload = async (parent: any, { file, targetType, fileType, imageType
 
 const multipleUpload = async (parent: any, { files, targetType, fileType, imageType }: any = {}, context: any, info: any) => {
     try {
-        authenticateUser(context)
+        authenticatePerson(context)
         let values = await Promise.all(files)
         let streams = values.map((file: any) => ({ ...file, stream: file.createReadStream() }))
-        // const { createReadStream, filename, mimetype } = await files;
-
-        // let profile = await getUserProfile(parent, {}, context, info)
-        // let username = profile.UserName
-        // if (!username) {
-        //     username = 'unknown'
-        // }
 
         streams = streams.map((file: any) => uploadFile(file, targetType, fileType, imageType))
         
@@ -102,7 +88,7 @@ const multipleUpload = async (parent: any, { files, targetType, fileType, imageT
         let params = {
             location: "",
             key: "",
-            userToken: context.UserToken,
+            personToken: context.PersonToken,
             targetType,
             fileType,
             imageType,

@@ -1,5 +1,5 @@
 interface IContext {
-    UserToken?: string
+    PersonToken?: string
 }
 
 export type { IContext }
